@@ -17,7 +17,7 @@ function createCanvas(){
     ctx.font = '46px Roboto Slab';
     ctx.textAlign = 'center';
     ctx.fillStyle = '#FFF';
-    ctx.setTransform(1, -0.12, 0.2, 1, 0, 12);
+    // ctx.setTransform(1, -0.12, 0.2, 1, 0, 12);
     ctx.fillText(createStr, canvas.width / 2, 60);
   }
 }
@@ -35,6 +35,9 @@ $('.submit').click(function (){
     console.log("success");
   } else {
     console.log('failed');
+    $('.errorMsg').css({
+      display:'block'
+    })
   }
   createCanvas();
 });
