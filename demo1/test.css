@@ -15,7 +15,6 @@ html, body {
 .classpage2 {
   display: flex;
   flex-direction: row;
-
 }
 
 .classpage2 .textdiscription {
@@ -60,11 +59,10 @@ html, body {
   width: 50%;
   border-radius: 50%;
   height: 50%;
-  background-color: rgb(180, 90, 25)
-  animation: bollmove 0.8s infinite alternate;
+  background-color: rgb(180, 90, 25) animation: bollmove 0.8s infinite alternate;
 }
 
-.square::before,.square::after {
+.square::before, .square::after {
   content: '';
   display: block;
   width: 20%;
@@ -75,43 +73,45 @@ html, body {
   top: -10px;
   left: 50%;
 }
+
 .square::before {
   transform: translateX(-70%) rotate(45deg);
 }
+
 .square::after {
   transform: translateX(-30%) rotate(-45deg);
 }
 
 .classpage2 .blue {
   background-color: rgb(36, 47, 144);
-  animation-delay:0.5s;
+  animation-delay: 0.5s;
 }
 
 @keyframes bollmove {
-  0%{
+  0% {
     transform: translate(-50%);
   }
-  100%{
+
+  100% {
     transform: translate(50%);
   }
-
 }
 
 @keyframes jumping {
-  50%{
+  50% {
     top: 0;
     box-shadow: 10px 10px 10px 0px rgb(152, 161, 89);
   }
-  100%{
+
+  100% {
     top: -50px;
     box-shadow: 10px 100px 10px 0px rgb(152, 161, 89);
   }
-
 }
 
 .pageLoad {
   position: absolute;
-display: flex;
+  display: flex;
   width: 100%;
   height: 100%;
   background-color: rgb(99, 168, 238);
@@ -119,15 +119,20 @@ display: flex;
   align-items: center;
 }
 
-.pageLoad .bar1{
+.pageLoad .bar1 {
   width: 100px;
   height: 5px;
   background-color: white;
   border-radius: 5px;
   overflow: hidden;
 }
+
 .pageLoad .bar2 {
   height: 100%;
   width: 0%;
   background-color: rgb(201, 17, 103);
+}
+
+.pageLoad.complete {
+  opacity: 0;
 }
