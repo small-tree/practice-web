@@ -1,0 +1,50 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.div-list, .wraper .dian {
+  /* inline-block 默认是 bottom 对其 */
+  display: inline-block;
+  color: white;
+  font-size: 86px;
+  line-height: 86px;
+  text-align: top;
+  /* 垂直方向对其 */
+  vertical-align: top;
+  font-weight: 300;
+}
+
+body {
+  background-color: rgb(131, 98, 159);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.div-list {
+  transition: all 300ms ease-in;
+}
+
+.wraper {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.dian {
+  /* calc 属性运算 */
+  transform: translateY(calc(50vh - 60px));
+}
+
+.show {
+  opacity: 1;
+}
+
+.far1 {
+  opacity: 0.35;
+}
+
+.close {
+  opacity: 0.1;
+}
