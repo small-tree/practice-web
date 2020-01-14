@@ -1,0 +1,61 @@
+public void getNewRobotWelcome(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpClient httpClient = new DefaultHttpClient();
+                String tenantId = "67386";
+                String orgName = "1473190314068186";
+                String appName = "kefuchannelapp67386";
+                //username IM服务号
+                String userName = "kefuchannelimid_232273";
+                //当前登录人的用户token
+                String userToken = ChatClient.getInstance().accessToken();
+                HttpGet httpGet = new HttpGet("http://kefu.easemob.com/v1/webimplugin/tenants/robots/welcome?channelType=easemob&originType=app&tenantId="+tenantId+"&orgName="+orgName+"&appName="+appName+"&userName="+userName+"&token="+userToken);
+                try {
+                    HttpResponse response = httpClient.execute(httpGet);
+                    int code = response.getStatusLine().getStatusCode();
+                    if (code == 200) {
+                        final String rev  = EntityUtils.toString(response.getEntity());
+
+                        JSONObject obj = new JSONObject(rev);
+                        Log.e("数据1----》 ",obj.getJSONObject("entity").getString("greetingText"));
+
+                        int type = obj.getJSONObject("entity").getInt("greetingTextType");
+                        final String rob_welcome = obj.getJSONObject("entity").getString("greetingText");
+
+                       // type为0代表是文字消息的机器人欢迎语
+                        //type为1代表是菜单消息的机器人欢迎语
+                        if(type == 0){
+                            //把解析拿到的string保存在本地
+                            Preferences.getInstance().setRobot(rob_welcome);
+                        }else if(type == 1){
+                            final String str = rob_welcome.replaceAll("&amp;quot;","\"");
+                            JSONObject json = new JSONObject(str);
+                            JSONObject ext = json.getJSONObject("ext");
+                            final JSONObject msgtype = ext.getJSONObject("msgtype");
+                            //把解析拿到的string保存在本地
+                            Preferences.getInstance().setRobot(msgtype.toString());
+                            Log.e("TAG","菜单消息" +"rob_welcome= "+ msgtype );
+                        }
+
+                        ChatClient.getInstance().chatManager().getCurrentSessionId("kefuchannelimid_232273", new ValueCallBack<String>() {
+                            @Override
+                            public void onSuccess(String value) {
+                                Log.e("TAG  value:",value + "  当返回value不为空时，则返回的当前会话的会话ID，也就是说会话正在咨询中，不需要发送欢迎语" );
+                                if (value.isEmpty()){//
+                                    saveMessage();
+                                }
+                            }
+
+                            @Override
+                            public void onError(int error, String errorMsg) {
+
+                            }
+                        });
+                    }
+                }catch(final Exception e){
+                    Log.e("TAG","错误" +"rob_welcome="+ e.getMessage() );
+                }
+            }
+        }).start();
+    }

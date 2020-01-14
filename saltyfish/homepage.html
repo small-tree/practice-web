@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/phonefont.css">
+  <title>首页</title>
+</head>
+
+<style media="screen">
+
+</style>
+
+
+<body>
+
+  <div class="content">
+    <div id="top_category" class="top_category">
+      <div v-on:click="phone">
+        <img src="http://pics.sc.chinaz.com/Files/pic/icons128/7592/g1.png">
+        二手手机
+      </div>
+      <div v-on:click="game">
+        <img src="http://pics.sc.chinaz.com/Files/pic/icons128/7592/g10.png">
+        游戏交易
+      </div>
+      <div v-on:click="book">
+        <img src="http://pics.sc.chinaz.com/Files/pic/icons128/7592/g11.png">
+        二手图书
+      </div>
+      <div v-on:click="fashion">
+        <img src="http://pics.sc.chinaz.com/Files/pic/icons128/7592/g13.png">
+        潮品
+      </div>
+      <div v-on:click="category">
+        <img src="http://pics.sc.chinaz.com/Files/pic/icons128/7592/g5.png">
+        分类
+      </div>
+
+    </div>
+
+
+
+  </div>
+  <div id="bottomMenu" v-on:click="bottomMenu" class="bottomMenu">
+
+    <li>咸鱼</li>
+    <li>鱼塘</li>
+    <li>消息</li>
+    <li>我的</li>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  new Vue({
+    el: "#bottomMenu",
+    methods: {
+
+      bottomMenu: function(event) {
+        console.log(event);
+        if (event.target.innerText == "咸鱼") {
+          alert("咸鱼");
+        } else if (event.target.innerText == "鱼塘") {
+          alert("fishpool");
+        } else if (event.target.innerText == "消息") {
+          alert("message");
+        } else if (event.target.innerText == "我的") {
+          prompt("请输入文字", "默认文本");
+        }
+      }
+    }
+  });
+
+  new Vue({
+    el: "#top_category",
+    methods: {
+
+      phone: function(event) {
+        console.log(event);
+        window.confirm('phone');
+      },
+      game: function(event) {
+        console.log(event);
+        window.confirm('game');
+      },
+      book: function(event) {
+        console.log(event);
+        window.confirm('book');
+      },
+      fashion: function(event) {
+        console.log(event);
+        window.confirm('hashion');
+      },
+      category: function(event) {
+        console.log(event);
+        window.confirm('category');
+      }
+    }
+
+  });
+</script>
+
+
+</html>
